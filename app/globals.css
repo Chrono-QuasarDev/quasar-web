@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-void: #0a0a0b;
+  --color-panel: #121214;
+  --color-panel-2: #1a1a1e;
+  --color-accent: #d4f542;
+  --color-accent-dim: #a8c933;
+  --color-cosmic: #8b5cf6;
+  --color-nebula: #22d3ee;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  --background: #0a0a0b;
+  --foreground: #f4f4f5;
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(212, 245, 66, 0.85);
+  color: #0a0a0b;
+}
+
+/* Slim custom scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Equalizer bars for now-playing indicator */
+@keyframes eq-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+.eq-bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.eq-bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.eq-bar:nth-child(4) {
+  animation-delay: 0.1s;
+}
+
+/* Aurora glow for hero surfaces */
+.aurora-bg {
+  background:
+    radial-gradient(60% 50% at 20% 10%, rgba(139, 92, 246, 0.35), transparent 70%),
+    radial-gradient(50% 45% at 80% 20%, rgba(34, 211, 238, 0.25), transparent 70%),
+    radial-gradient(45% 50% at 50% 90%, rgba(212, 245, 66, 0.12), transparent 70%),
+    #0a0a0b;
+}
+
+.glass {
+  background: rgba(18, 18, 20, 0.72);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+
+/* Range slider (native fallback styling) */
+input[type="range"].quasar-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"].quasar-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+input[type="range"].quasar-range:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+input[type="range"].quasar-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* Shimmer for skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}

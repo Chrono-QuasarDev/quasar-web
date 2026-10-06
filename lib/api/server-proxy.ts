@@ -12,7 +12,6 @@ export const BACKEND_URL =
 const FORWARD_HEADERS = ["authorization", "content-type", "range", "accept"];
 const RETURN_HEADERS = [
   "content-type",
-  "content-length",
   "content-range",
   "accept-ranges",
 ];

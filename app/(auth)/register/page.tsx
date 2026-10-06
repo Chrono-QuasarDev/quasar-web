@@ -39,6 +39,7 @@ export default function RegisterPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterForm>({ resolver: zodResolver(registerSchema) });
+  
 
   const mutation = useMutation({
     mutationFn: async (values: RegisterForm) => {
